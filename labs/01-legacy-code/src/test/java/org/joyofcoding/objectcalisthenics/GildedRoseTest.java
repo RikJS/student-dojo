@@ -26,12 +26,13 @@ public class GildedRoseTest {
         repeatUpdateQuality(1);
 
         ItemsAssert.assertThat(items)
-                .containsOnlyItemNames("+5 Dexterity Vest",
-                        "Aged Brie",
-                        "Elixir of the Mongoose",
-                        "Sulfuras, Hand of Ragnaros",
-                        "Backstage passes to a TAFKAL80ETC concert",
-                        "Conjured Mana Cake")
+                .containsOnlyItemNames(
+                        new Name("+5 Dexterity Vest"),
+                        new Name("Aged Brie"),
+                        new Name("Elixir of the Mongoose"),
+                        new Name("Sulfuras, Hand of Ragnaros"),
+                        new Name("Backstage passes to a TAFKAL80ETC concert"),
+                        new Name("Conjured Mana Cake"))
                 .containsOnlyItemQualities(19, 1, 6, 80, 21, 5)
                 .containsOnlyItemSellIns(9, 1, 4, 0, 14, 2);
     }
@@ -39,11 +40,11 @@ public class GildedRoseTest {
     @Test
     public void after_one_day_with_sufuras_having_sellIn_lesser_than_zero_and_quality_greater_than_zero() {
         items = new ArrayList<Item>();
-        items.add(new Item("Sulfuras, Hand of Ragnaros", -1, 1));
+        items.add(new Item(new Name("Sulfuras, Hand of Ragnaros"), -1, 1));
         repeatUpdateQuality(1);
 
         ItemsAssert.assertThat(items)
-                .containsOnlyItemNames("Sulfuras, Hand of Ragnaros")
+                .containsOnlyItemNames(new Name("Sulfuras, Hand of Ragnaros"))
                 .containsOnlyItemQualities(1)
                 .containsOnlyItemSellIns(-1);
     }
@@ -53,12 +54,13 @@ public class GildedRoseTest {
         repeatUpdateQuality(3);
 
         ItemsAssert.assertThat(items)
-                .containsOnlyItemNames("+5 Dexterity Vest",
-                        "Aged Brie",
-                        "Elixir of the Mongoose",
-                        "Sulfuras, Hand of Ragnaros",
-                        "Backstage passes to a TAFKAL80ETC concert",
-                        "Conjured Mana Cake")
+                .containsOnlyItemNames(
+                        new Name("+5 Dexterity Vest"),
+                        new Name("Aged Brie"),
+                        new Name("Elixir of the Mongoose"),
+                        new Name("Sulfuras, Hand of Ragnaros"),
+                        new Name("Backstage passes to a TAFKAL80ETC concert"),
+                        new Name("Conjured Mana Cake"))
                 .containsOnlyItemQualities(17, 4, 4, 80, 23, 3)
                 .containsOnlyItemSellIns(7, -1, 2, 0, 12, 0);
     }
@@ -68,12 +70,13 @@ public class GildedRoseTest {
         repeatUpdateQuality(500);
 
         ItemsAssert.assertThat(items)
-                .containsOnlyItemNames("+5 Dexterity Vest",
-                        "Aged Brie",
-                        "Elixir of the Mongoose",
-                        "Sulfuras, Hand of Ragnaros",
-                        "Backstage passes to a TAFKAL80ETC concert",
-                        "Conjured Mana Cake")
+                .containsOnlyItemNames(
+                        new Name("+5 Dexterity Vest"),
+                        new Name("Aged Brie"),
+                        new Name("Elixir of the Mongoose"),
+                        new Name("Sulfuras, Hand of Ragnaros"),
+                        new Name("Backstage passes to a TAFKAL80ETC concert"),
+                        new Name("Conjured Mana Cake"))
                 .containsOnlyItemQualities(0, 50, 0, 80, 0, 0)
                 .containsOnlyItemSellIns(-490, -498, -495, 0, -485, -497);
     }
@@ -117,6 +120,6 @@ public class GildedRoseTest {
     private Item aRandomBackstagePass() {
         int quality = randomQuality();
         int sellIn = randomSellIn();
-        return new Item("Backstage passes to a TAFKAL80ETC concert", sellIn, quality);
+        return new Item(new Name("Backstage passes to a TAFKAL80ETC concert"), sellIn, quality);
     }
 }

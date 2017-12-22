@@ -3,6 +3,10 @@ package org.joyofcoding.objectcalisthenics.assertions;
 import org.assertj.core.api.AbstractIterableAssert;
 import org.assertj.core.api.Assertions;
 import org.joyofcoding.objectcalisthenics.Item;
+import org.joyofcoding.objectcalisthenics.Name;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.extractProperty;
 
@@ -16,15 +20,20 @@ public class ItemsAssert extends AbstractIterableAssert<ItemsAssert, Iterable<It
         return new ItemsAssert(actual);
     }
 
-    public ItemsAssert containsOnlyItemNames(String... names) {
+    public ItemsAssert containsOnlyItemNames(Name... names) {
         isNotNull();
 
-        Iterable<String> actualItemNames = extractProperty("name", String.class)
+        String[] nameValues = new String[names.length];
+        for(int i=0; i<names.length; i++) {
+            nameValues[i] = names[i].getValue();
+        }
+
+        Iterable<String> actualItemNames = extractProperty("name.value", String.class)
                 .from(actual);
 
         Assertions
                 .assertThat(actualItemNames)
-                .containsOnly(names);
+                .containsOnly(nameValues);
 
         return this;
     }
